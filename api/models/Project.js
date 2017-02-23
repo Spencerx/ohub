@@ -18,6 +18,11 @@ module.exports = {
       required: true,
       columnName: "name"
     },
+    headline: {
+      type: 'longtext',
+      required: false,
+      columnName: "headline"
+    },
     description: {
       type: 'longtext',
       required: false,
