@@ -1,0 +1,31 @@
+<script id="template" type="text/ractive">
+
+  <div class="project-list-content container">
+    <h2>Projects</h2>
+    <div class="row" style="margin-bottom: 50px">
+      <div class="col-md-offset-2 col-md-8">
+        <p>Most popular projects on OHub</p>
+      </div>
+    </div>
+
+    <div class="row">
+      {{#each projects:i}}
+      <div class="col-xs-12 col-sm-6 col-md-4" style="margin-bottom: 30px;">
+        <div style="width:300px;" class="center-block">
+          <a href="/{{ owner.username }}/{{ identifier }}">
+          <img src="{{#if ! imageUrl }}/images/no-project-picture.png{{else}}{{ imageUrl }}{{/if}}" style="border: 1px solid #ccc; margin-bottom: 15px; border-radius: 5px;">
+          <h3 style="font-size: 1.2em; margin: 0; overflow: hidden; white-space: nowrap; color: #555; text-align: center;">{{ name }}</h3>
+          </a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+</script>
+
+<div id="ractive-container">
+
+</div>
+
+<script data-main="/js/projects" src="/packages/requirejs/require.js"></script>

@@ -26,6 +26,13 @@ module.exports.routes = {
     view: 'homepage'
   },
 
+  'get /*': {
+    controller: 'ViewController',
+    action: 'user',
+    skipAssets: true,
+    skipRegex: new RegExp('/api/.*')
+  },
+
   'post /api/v1/tokens': 'AuthController.authenticate',
 
   'post   /api/v1/projects/:projectId/cadmodels'     : 'CadModelController.create',
