@@ -128,7 +128,8 @@ describe('Complete scenario', function() {
           .set('X-Auth-Token', token)
           .send({
             name: "v1.0",
-            description: "First stable release"
+            description: "First stable release",
+            author: user.id
           })
           .expect(201)
           .expect(function(res) {
