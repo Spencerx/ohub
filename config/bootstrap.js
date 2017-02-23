@@ -18,6 +18,7 @@ module.exports.bootstrap = function(cb) {
 
       function createAdmin(callback) {
         User.create({
+          username: 'admin',
           firstname: 'Admin',
           lastname: 'OHub',
           email: 'admin.ohub@opencompute.org',
@@ -34,9 +35,10 @@ module.exports.bootstrap = function(cb) {
 
       function createUser(callback) {
         User.create({
+          username: 'johndoe',
           firstname: 'John',
-          lastname: 'Lenon',
-          email: 'admin@opencompute.org',
+          lastname: 'Doe',
+          email: 'johndoe@opencompute.org',
           password: 'password',
         }).exec(function(error, user) {
           if (error) {

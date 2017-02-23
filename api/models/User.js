@@ -14,6 +14,12 @@ module.exports = {
       unique: true,
       columnName: "email"
     },
+    username: {
+      type: 'string',
+      required: true,
+      unique: true,
+      columnName: "username"
+    },
     firstname: {
       type: 'string',
       required: true,

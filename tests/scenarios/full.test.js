@@ -55,6 +55,7 @@ describe('Complete scenario', function() {
         .post('/api/v1/users')
         .set('X-Auth-Token', token)
         .send({
+          username: 'johnlenon',
           firstname: 'John',
           lastname: 'Lenon',
           email: 'john.lenon@opencompute.org',
