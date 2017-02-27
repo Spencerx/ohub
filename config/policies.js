@@ -29,6 +29,11 @@ module.exports.policies = {
         '*': true,
     },
 
+    UserController: {
+        'find': true,
+        'findOne': true,
+    },
+
     ProjectController: {
         'find': true,
         'findOne': true,
