@@ -3,7 +3,10 @@
   <div class="normal-content container" style="margin-top: 30px;">
     <div class="row">
       <div class="col-md-6">
-        <h3><span class="glyphicon glyphicon-folder-open"></span>{{ project.owner.username}} / {{ project.identifier }}</h3>
+        <h3>
+          <span class="glyphicon glyphicon-folder-open"></span>
+          <a href="/{{ project.owner.username}}">{{ project.owner.username}}</a> / <a href="/{{ project.owner.username}}/{{ project.identifier }}">{{ project.identifier }}</a>
+        </h3>
       </div>
       <div class="col-md-6">
         <button class="btn btn-sm btn-default pull-right">
@@ -21,7 +24,7 @@
           <p>
             <img src="{{#if ! project.imageUrl }}/images/no-project-picture.png{{else}}{{ project.imageUrl }}{{/if}}" style="border: 1px solid #ccc; margin-bottom: 15px; border-radius: 5px; margin-right: 20px;">
           </p>
-          <div class="project-menu">
+          <div class="vertical-menu-icon project-menu">
             <div><a href="#"><span class="glyphicon glyphicon-tasks"></span>Issues</a></div>
             <div><a href="#"><span class="glyphicon glyphicon-file"></span>Source code</a></div>
             <div><a href="/{{ project.owner.username}}/{{ project.identifier }}/mecanic"><span class="glyphicon glyphicon-wrench"></span>Mecanic</a></div>
