@@ -11,14 +11,42 @@ module.exports = {
     if (!req.params.projectId) {
       return res.notFound();
     }
-    // TODO check project exists and user is authorized
-    CadModel.find({ owner: req.params.projectId }, function(err, cadModels) {
-      if (err) {
+
+    CadModel.find({ owner: req.params.projectId })
+      .sort("createdAt ASC")
+      .populate("revisions")
+      .then(function(cadModels) {
+        if (!cadModels) {
+            return [null, null];
+        }
+        return [
+          cadModels,
+          CadModelRevision.find({ projectId: req.params.projectId }).sort("createdAt DESC").populate("author")
+        ]
+      })
+      .spread(function(cadModels, cadModelRevisions) {
+        if (!cadModels) {
+            return res.notFound({ error: 'Could not find CAD models for project ' + req.params.projectId});
+        }
+
+        cadModelRevisions = _.groupBy(cadModelRevisions, function(revision) {
+          delete revision.author.password;
+          delete revision.author.projects;
+          delete revision.author.createdAt;
+          delete revision.author.updatedAt;
+          return revision.owner;
+        });
+
+        _.each(cadModels, function(model) {
+          model.revisions = cadModelRevisions[model.id]
+        });
+
+        return res.ok(cadModels);
+      })
+      .catch(function(err) {
         sails.log.error(err);
         return res.serverError({ error: 'Internal server error'});
-      }
-      res.ok(cadModels);
-    });
+      });
   },
 
   create: function(req, res) {

@@ -17,6 +17,7 @@
 // (if you're using LESS with the built-in default config, you'll want
 //  to change `assets/styles/importer.less` instead.)
 var cssFilesToInject = [
+  'packages/bootstrap/dist/css/bootstrap.min.css',
   'styles/**/*.css'
 ];
 
@@ -24,7 +25,8 @@ var cssFilesToInject = [
 // Client-side javascript files to inject in order
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
-
+  '/packages/jquery/dist/jquery.min.js',
+  '/packages/underscore/underscore-min.js'
 ];
 
 

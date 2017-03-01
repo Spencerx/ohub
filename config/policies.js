@@ -25,4 +25,23 @@ module.exports.policies = {
         '*': true,
     },
 
+    ViewController: {
+        '*': true,
+    },
+
+    ProjectController: {
+        'find': true,
+        'findOne': true,
+    },
+
+    CadModelController: {
+        'find': true,
+        'findOne': true,
+    },
+
+    CadModelRevisionController: {
+        'find': true,
+        'findOne': true,
+    }
+
 };

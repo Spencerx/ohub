@@ -23,6 +23,11 @@ module.exports = {
       columnName: "cadmodel",
       required: true
     },
+    author: {
+      model: "user",
+      columnName: "author",
+      required: true
+    },
     projectId: {
       type: "string",
       columnName: "projectId",

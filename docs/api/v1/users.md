@@ -8,6 +8,7 @@ Create a user.
 
 ```json
 {
+    "username": "johnlenon",
     "firstname": "John",
     "lastname": "Lenon",
     "email": "john.lenon@opencompute.org",
@@ -20,6 +21,7 @@ Create a user.
 ```json
 {
     "id": "587e2ceeccb8b2921b3c6e2b",
+    "username": "johnlenon",
     "firstname": "John",
     "lastname": "Lenon",
     "email": "john.lenon@opencompute.org",
@@ -57,6 +59,7 @@ Get all users.
 [
     {
         "id": "587e2ceeccb8b2921b3c6e2b",
+        "username": "johnlenon",
         "firstname": "John",
         "lastname": "Lenon",
         "email": "john.lenon@opencompute.org",
@@ -65,6 +68,7 @@ Get all users.
     },
     {
         "id": "587e2ef6ccb8b2921b3c6e2f",
+        "username": "paulmccartney",
         "firstname": "Paul",
         "lastname": "McCartney",
         "email": "paul.mccartney@opencompute.org",
@@ -91,6 +95,7 @@ Get a single user.
 ```json
 {
     "id": "587e2ef6ccb8b2921b3c6e2f",
+    "username": "paulmccartney",
     "firstname": "Paul",
     "lastname": "McCartney",
     "email": "paul.mccartney@opencompute.org",
@@ -131,6 +136,7 @@ Update the specified user.
 ```json
 {
     "id": "587e2ceeccb8b2921b3c6e2b",
+    "username": "johnlenon",
     "firstname": "John",
     "lastname": "Lenon",
     "email": "john.lenon@opencompute.org",
