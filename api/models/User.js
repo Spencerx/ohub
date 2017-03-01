@@ -41,6 +41,26 @@ module.exports = {
       required: false,
       columnName: "company"
     },
+    position: {
+      type: 'string',
+      required: false,
+      columnName: "position"
+    },
+    location: {
+      type: 'string',
+      required: false,
+      columnName: "location"
+    },
+    website: {
+      type: 'string',
+      required: false,
+      columnName: "website"
+    },
+    biography: {
+      type: 'longtext',
+      required: false,
+      columnName: "biography"
+    },
     projects: {
       collection: "project",
       via: "owner"

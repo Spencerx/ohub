@@ -117,6 +117,16 @@ body {
   margin-left: 10px;
 }
 
+.normal-content h3 a,
+.normal-content h3 a:hover,
+.normal-content h3 a:visited {
+  color: #666;
+}
+
+.normal-content h3 a:hover {
+  text-decoration: underline;
+}
+
 .normal-content h3.section {
   font-size: 2em;
 }
@@ -138,68 +148,32 @@ body {
   margin-bottom: 60px;
 }
 
-.project-menu div {
-  width: 300px;
+.vertical-menu-icon div {
   border-bottom: 1px solid #eee;
   margin-bottom: 10px;
   padding-bottom: 10px;
   padding-left: 15px;
 }
 
-.project-menu div span {
+.vertical-menu-icon div span {
   margin-right: 10px;
 }
 
-.project-menu a,
-.project-menu a:visited {
+.vertical-menu-icon a,
+.vertical-menu-icon a:visited {
   text-decoration: none !important;
   color: #333;
 }
 
-.project-menu a:hover {
+.vertical-menu-icon a:hover {
   text-decoration: none !important;
   color: #008800;
 }
 
-/******************************************************************************************/
-
-
-
-
-
-/*.col-fixed-350{
-    width: 300px;
-    background:red;
-    position:fixed;
-    height:100%;
-    z-index:1;
+.project-menu {
+  width: 300px;
 }
 
-
-
-.col-fixed-240{
-    width:240px;
-    background:red;
-    position:fixed;
-    height:100%;
-    z-index:1;
+.user-info-list {
+  width: 250px;
 }
-
-.col-fixed-160{
-    margin-left:240px;
-    width:160px;
-    background:blue;
-    position:fixed;
-    height:100%;
-    z-index:1;
-}
-
-.col-offset-350{
-    padding-left: 330px;
-    z-index:0;
-}
-
-.col-offset-400{
-    padding-left: 415px;
-    z-index:0;
-}*/

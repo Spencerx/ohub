@@ -40,6 +40,11 @@ module.exports.bootstrap = function(cb) {
           lastname: 'Doe',
           email: 'johndoe@opencompute.org',
           password: 'password',
+          position: 'Software engineer',
+          company: 'Splitted-Desktop Systems',
+          location: 'Paris',
+          website: 'http://www.mysite.doesnotexist',
+          biography: '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>'
         }).exec(function(error, user) {
           if (error) {
             sails.log.error('Bootstrap | ', error);
