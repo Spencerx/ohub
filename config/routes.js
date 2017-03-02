@@ -22,9 +22,7 @@
 
 module.exports.routes = {
 
-  '/': {
-    view: 'homepage'
-  },
+  'post /auth': 'ViewController.auth',
 
   'get /*': {
     controller: 'ViewController',

@@ -55,7 +55,12 @@
             <li><a href="/projects">Explore</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a>Sign in</a></li>
+          <% if (typeof authenticated !== 'undefined' && authenticated) { %>
+            <li style="line-height: 20px; padding-top: 15px; padding-bottom: 15px;">Logged in as <strong><%= user.firstname %> <%= user.lastname %></strong></li>
+            <li><a href="/logout">Log out</a></li>
+          <% } else { %>
+            <li><a href="/signin">Sign in</a></li>
+          <% } %>
           </ul>
         </div>
       </div>

@@ -45,6 +45,20 @@ body {
   margin-top: 45px;
 }
 
+.signin-form {
+  width: 300px;
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+.signin-form input {
+  margin-bottom: 30px;
+  height: 40px;
+}
+
+.signin-form h2, .signin-form h3 {
+  color: #777;
+}
 
 .landing-page-items {
   margin-bottom: 60px;
