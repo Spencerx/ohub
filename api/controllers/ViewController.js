@@ -32,7 +32,7 @@ function isIdentfierReservedPathPrefix(identifier) {
 
 module.exports = {
 
-  user: function(req, res) {
+  websiteRouter: function(req, res) {
 
     var pathArray = cleanArray(req.path.split('/'));
 

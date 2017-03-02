@@ -28,7 +28,7 @@ module.exports.routes = {
 
   'get /*': {
     controller: 'ViewController',
-    action: 'user',
+    action: 'websiteRouter',
     skipAssets: true,
     skipRegex: new RegExp('/api/.*')
   },
