@@ -22,13 +22,11 @@
 
 module.exports.routes = {
 
-  '/': {
-    view: 'homepage'
-  },
+  'post /auth': 'ViewController.auth',
 
   'get /*': {
     controller: 'ViewController',
-    action: 'user',
+    action: 'websiteRouter',
     skipAssets: true,
     skipRegex: new RegExp('/api/.*')
   },

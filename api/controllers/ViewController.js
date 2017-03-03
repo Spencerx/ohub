@@ -7,10 +7,28 @@
 
 var _ = require("underscore");
 
-var reservedPathList = ['about', 'projects']
+var reservedPathList = ['homepage', 'about', 'projects', 'signin', 'logout'];
 
 function _view(req, res, view, model) {
-  return res.view(view, model ? {} : model);
+  if (!model) {
+    model = {};
+  }
+
+  if (req.isAuthenticated()) {
+    model.authenticated = true;
+    sails.log.debug(req.user);
+    model.user = {
+      firstname: req.user.firstname,
+      lastname: req.user.lastname,
+      username: req.user.username,
+      email: req.user.email
+    }
+  }
+  else {
+    model.authenticated = false;
+  }
+
+  return res.view(view, model);
 }
 
 function cleanArray(actual) {
@@ -30,11 +48,43 @@ function isIdentfierReservedPathPrefix(identifier) {
   return false;
 }
 
+function logout(req, res) {
+  res.cookie('jwttoken', 'logout', { httpOnly: true, expires: new Date(0) })
+  return res.redirect('/');
+}
+
 module.exports = {
 
-  user: function(req, res) {
+  auth: function(req, res) {
+    Authentication.authenticate(req.body.username, req.body.password,
+      function(token) {
+        res.cookie('jwttoken', token.token, { httpOnly: true })
+        return res.redirect('/projects');
+      },
+      function() {
+        return _view(req, res, 'signin');
+      },
+      function(err) {
+        res.send(500);
+      }
+    );
+  },
+
+  websiteRouter: function(req, res) {
 
     var pathArray = cleanArray(req.path.split('/'));
+
+    if (pathArray.length === 0) {
+      return _view(req, res, 'homepage');
+    }
+
+    if (pathArray[0] === 'signin' && req.isAuthenticated()) {
+      return res.redirect('/');
+    }
+
+    if (pathArray[0] === 'logout') {
+      return logout(req, res);
+    }
 
     if (isIdentfierReservedPathPrefix(pathArray[0])) {
       return _view(req, res, pathArray[0]);

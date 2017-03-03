@@ -68,11 +68,11 @@ module.exports.http = {
 
     decodeJwtToken: function(req, res, next) {
 
-      if (!req.url.startsWith('/api/')) {
-        return next();
-      }
-
       var token = req.headers['x-auth-token'];
+
+      if (!token) {
+        token = req.cookies.jwttoken;
+      }
 
       sails.log.debug("==== Token => ", token);
 
@@ -86,10 +86,15 @@ module.exports.http = {
       if (token) {
         jwt.verify(token, sails.config.http.jwt.secret, function(err, decoded) {
           if (err) {
-            return res.send(401, { message: 'Token authentication failed' });
+            sails.log.debug("==== Invalid Token");
+            if (req.url.startsWith('/api/')) {
+              return res.send(401, { message: 'Token authentication failed' });
+            }
           }
-          req.user = decoded;
-          sails.log.debug("==== Decoded Token => ", decoded);
+          else {
+            req.user = decoded;
+            sails.log.debug("==== Decoded Token => ", decoded);
+          }
           next();
         });
         return;
