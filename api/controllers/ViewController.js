@@ -103,9 +103,21 @@ module.exports = {
     }
 
     if (pathArray.length === 3) {
-      // Requesting for an application in a project (like mecanics, issues, ...)
-      if (pathArray[2] === 'mecanic') {
-        return _view(req, res, 'mecanic');
+      // Requesting for an application in a project (like mecanical, issues, ...)
+      if (pathArray[2] === 'mecanical') {
+        return _view(req, res, 'mecanical');
+      }
+      // TODO return not found
+      return res.notFound();
+    }
+
+    if (pathArray.length === 4) {
+      // Requesting for an application in a project (like mecanical, issues, ...)
+      if (pathArray[2] === 'mecanical') {
+        if (pathArray[3] === 'blade' || pathArray[3] === 'cage' || pathArray[3] === 'tank') {
+          return _view(req, res, 'mecanical-model');
+        }
+        return res.notFound();
       }
       // TODO return not found
       return res.notFound();

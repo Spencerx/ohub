@@ -28,6 +28,11 @@ module.exports = {
       required: false,
       columnName: "description"
     },
+    imageUrl: {
+      type: 'string',
+      required: false,
+      columnName: "imageUrl"
+    },
     cadmodels: {
       collection: "cadmodel",
       via: "owner"

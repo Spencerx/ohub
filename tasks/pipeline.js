@@ -26,7 +26,12 @@ var cssFilesToInject = [
 // (uses Grunt-style wildcard/glob/splat expressions)
 var jsFilesToInject = [
   '/packages/jquery/dist/jquery.min.js',
-  '/packages/underscore/underscore-min.js'
+  '/packages/underscore/underscore-min.js',
+  // '/packages/three.js/three.min.js',
+  '/js/dependencies/three.js',
+  '/js/dependencies/TrackballControls.js',
+  '/js/dependencies/TinyTrackballControls.js',
+  '/js/dependencies/GeomView.js'
 ];
 
 

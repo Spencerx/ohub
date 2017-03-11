@@ -95,6 +95,7 @@ describe('Complete scenario', function() {
           .set('X-Auth-Token', token)
           .send({
             name: "Open Teleporter Cabin",
+            identifier: 'teleporter',
             description: "A teleportation cabin able to transport a human"
           })
           .expect(201)

@@ -78,7 +78,8 @@ module.exports.bootstrap = function(cb) {
           identifier: 'windmill',
           headline: 'OCP Server v2',
           description: '',
-          owner: user1.id
+          owner: user1.id,
+          imageUrl: '/tmp/windmill.jpg'
         }).exec(function(error, project) {
           if (error) {
             sails.log.error('Bootstrap | ', error);
@@ -95,7 +96,8 @@ module.exports.bootstrap = function(cb) {
           identifier: 'barreleye',
           headline: 'OpenPower server',
           description: '',
-          owner: user2.id
+          owner: user2.id,
+          imageUrl: '/tmp/barreleye.jpg'
         }).exec(function(error, project) {
           if (error) {
             sails.log.error('Bootstrap | ', error);
@@ -112,7 +114,8 @@ module.exports.bootstrap = function(cb) {
           identifier: 'ruggedpod',
           headline: 'Get the cloud back outside',
           description: '<p>RuggedPOD is a microdatacenter project designed under the Open Compute Project license. The project aims to create the most energy efficient datacenter solution in the world, through a building block approach without the need of expensive upfront infrastructure.</p><p>The solution is designed to run outdoor, produced everywhere around the world through communities of hackers. It can be used for edge computing, datacenter, low cost Telecom solutions, SMB or corporate customers. Use cases are still under heavy investigation and raised by our daily expanding community as this breakthrough technology is able to get the cloud back outside !</p>',
-          owner: user1.id
+          owner: user1.id,
+          imageUrl: '/tmp/ruggedpod.jpg'
         }).exec(function(error, project) {
           if (error) {
             sails.log.error('Bootstrap | ', error);
@@ -125,6 +128,7 @@ module.exports.bootstrap = function(cb) {
 
       function createCadModel1(user1, user2, project, callback) {
         CadModel.create({
+          identifier: 'tank',
           name: 'Ruggedpod Tank',
           owner: project.id
         }).exec(function(error, model) {
@@ -187,6 +191,7 @@ module.exports.bootstrap = function(cb) {
 
       function createCadModel2(user1, user2, project, callback) {
         CadModel.create({
+          identifier: 'cage',
           name: 'Ruggedpod Cage',
           owner: project.id
         }).exec(function(error, model) {
@@ -217,6 +222,7 @@ module.exports.bootstrap = function(cb) {
 
       function createCadModel3(user1, user2, project, callback) {
         CadModel.create({
+          identifier: 'blade',
           name: 'Ruggedpod Blade',
           owner: project.id
         }).exec(function(error, model) {
@@ -225,6 +231,22 @@ module.exports.bootstrap = function(cb) {
             throw error;
           }
           sails.log.info('Bootstrap | Inserted CAD model :', model);
+          callback(null, user1, user2, project, model);
+        });
+      }
+
+      function createCadModelRevision3_1(user1, user2, project, model, callback) {
+        CadModelRevision.create({
+          name: 'v0.1',
+          owner: model.id,
+          projectId: model.owner,
+          author: user1.id
+        }).exec(function(error, modelRevision) {
+          if (error) {
+            sails.log.error('Bootstrap | ', error);
+            throw error;
+          }
+          sails.log.info('Bootstrap | Inserted CAD model revision :', modelRevision);
           callback(null);
         });
       }
@@ -242,7 +264,8 @@ module.exports.bootstrap = function(cb) {
         createCadModelRevision1_3,
         createCadModel2,
         createCadModelRevision2_1,
-        createCadModel3
+        createCadModel3,
+        createCadModelRevision3_1
       ], function (err) {
         // It's very important to trigger this callback method when you are finished
         // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)

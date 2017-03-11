@@ -1,0 +1,92 @@
+<script id="template" type="text/ractive">
+
+  <div class="normal-content container" style="margin-top: 30px;">
+    <div class="row">
+      <div class="col-md-6">
+        <h3>
+          <span class="glyphicon glyphicon-folder-open"></span>
+          <a href="/{{ project.owner.username}}">{{ project.owner.username }}</a> / <a href="/{{ project.owner.username}}/{{ project.identifier }}">{{ project.identifier }}</a>
+        </h3>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-sm btn-default pull-right">
+            <span class="glyphicon glyphicon-thumbs-up pull-left" style="margin-right: 10px"></span> Like (125)
+        </button>
+        <button class="btn btn-sm btn-default pull-right" style="margin-right: 15px">
+            <span class="glyphicon glyphicon-eye-open pull-left" style="margin-right: 10px"></span> Follow (10)
+        </button>
+      </div>
+    </div>
+
+    <table width="100%">
+      <tr>
+        <td width="310px" style="vertical-align: top">
+          <p>
+            <img src="{{#if ! project.imageUrl }}/images/no-project-picture.png{{else}}{{ project.imageUrl }}{{/if}}" style="border: 1px solid #ccc; margin-bottom: 15px; border-radius: 5px; margin-right: 20px;">
+          </p>
+          <div class="vertical-menu-icon project-menu">
+            <div><a href="#"><span class="glyphicon glyphicon-tasks"></span>Issues</a></div>
+            <div><a href="#"><span class="glyphicon glyphicon-file"></span>Source code</a></div>
+            <div><a href="/{{ project.owner.username}}/{{ project.identifier }}/mecanical"><span class="glyphicon glyphicon-wrench"></span>Mechanical</a></div>
+            <div><a href="#"><span class="glyphicon glyphicon-fire"></span>Electronic</a></div>
+            <div><a href="#"><span class="glyphicon glyphicon-globe"></span>Wiki</a></div>
+            <div><a href="#"><span class="glyphicon glyphicon-bullhorn"></span>Forum</a></div>
+          </div>
+        </td>
+        <td style="vertical-align: top">
+          <h3 class="section">Mechanical design</h3>
+          <hr>
+
+          <button class="btn btn-sm btn-success pull-right" style="margin-bottom: 30px">
+              <span class="glyphicon glyphicon-plus" style="font-size: 1.3em; margin-right: 10px"></span> New model
+          </button>
+
+          <table class="table table-striped">
+            <tbody>
+              {{#each project.cadmodels:i}}
+                <tr>
+                  <td width="40px"><strong>#{{ i+1 }}</strong></td>
+                  <td>
+                    <strong>{{ .name }}</strong>
+                    <div style="font-style: italic; color: #888; margin-top: 5px; margin-bottom: 15px;">
+                    {{#if .revisions[0] }}
+                      Last change by <a href="#">{{ .revisions[0].author.firstname }} {{ revisions[0].author.lastname }}</a>
+                    {{else}}
+                      No revision yet !
+                    {{/if}}
+                    </div>
+                    <img atl="FreeCAD" src="/images/freecad.png" style="margin-bottom: 10px;"> FreeCAD
+                  </td>
+                  <td>
+                    {{ revisions[0].name }}
+                  </td>
+                  <td>
+                    <a href="#" class="pull-right">See History</a>
+                    <br><br>
+                    <a class="btn btn-sm btn-primary pull-right" href="/johndoe/ruggedpod/mecanical/{{ identifier }}">
+                        <span class="glyphicon glyphicon-eye-open pull-left" style="font-size: 1.3em; margin-right: 10px"></span> View model
+                    </a>
+                    <button class="btn btn-sm btn-default pull-right" style="margin-right: 15px">
+                        <span class="glyphicon glyphicon-download pull-left" style="font-size: 1.3em; margin-right: 10px"></span> Original file
+                    </button>
+                    <button class="btn btn-sm btn-default pull-right" style="margin-right: 15px">
+                        <span class="glyphicon glyphicon-download pull-left" style="font-size: 1.3em; margin-right: 10px"></span> STEP file
+                    </button>
+                  </td>
+                </tr>
+              {{/each}}
+           </tbody>
+          </table>
+        </td>
+      <tr>
+    </table>
+
+  </div>
+
+</script>
+
+<div id="ractive-container">
+
+</div>
+
+<script data-main="/js/mecanical" src="/packages/requirejs/require.js"></script>

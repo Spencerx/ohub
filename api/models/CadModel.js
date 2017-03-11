@@ -13,6 +13,11 @@ module.exports = {
       required: true,
       columnName: "name"
     },
+    identifier: {
+      type: 'string',
+      required: true,
+      columnName: "identifier"
+    },
     description: {
       type: 'longtext',
       required: false,

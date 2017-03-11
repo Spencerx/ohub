@@ -1,0 +1,94 @@
+<script id="template" type="text/ractive">
+
+  <div class="normal-content container" style="margin-top: 30px;">
+
+    <div class="row">
+      <div class="col-md-6">
+        <h3>
+          <span class="glyphicon glyphicon-folder-open"></span>
+          <a href="/{{ project.owner.username}}">{{ project.owner.username }}</a> / <a href="/{{ project.owner.username}}/{{ project.identifier }}">{{ project.identifier }}</a> / <a href="/{{ project.owner.username}}/{{ project.identifier }}/mecanical">mechanical</a> / {{ cadmodel.identifier }}
+        </h3>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-sm btn-default pull-right">
+            <span class="glyphicon glyphicon-thumbs-up pull-left" style="margin-right: 10px"></span> Like (125)
+        </button>
+        <button class="btn btn-sm btn-default pull-right" style="margin-right: 15px">
+            <span class="glyphicon glyphicon-eye-open pull-left" style="margin-right: 10px"></span> Follow (10)
+        </button>
+      </div>
+    </div>
+
+    <h3 style="text-align: center !important;">{{ cadmodel.name }}</h3>
+    <div style="text-align: center; margin-top: -15px; margin-bottom: 15px;">
+      Revision {{ cadmodel.revision }} authored by <a href="/{{ cadmodel.author.username }}">{{ cadmodel.author.firstname }} {{ cadmodel.author.lastname }}</a>
+    </div>
+
+    <div style="padding: 10px; background-color: #f9f9f9; width: 100%; height: 45px;">
+      <div class="col-xs-6 col-sm-6 col-md-6" style="padding-left: 0; padding-right: 0">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" >
+            <span class="glyphicon glyphicon-eye-open" on-click="zoom-reset"></span>
+          </button>
+          <button type="button" class="btn btn-default" >
+            <span class="glyphicon glyphicon-zoom-in"></span>
+          </button>
+          <button type="button" class="btn btn-default" >
+            <span class="glyphicon glyphicon-zoom-out"></span>
+          </button>
+        </div>
+      </div>
+      <div class="col-xs-6 col-sm-6 col-md-6" style="padding-left: 0; padding-right: 0">
+        <div class="btn-group pull-right" role="group">
+          <button type="button" class="btn btn-default" >
+            <span class="glyphicon glyphicon-cloud-download"></span>
+          </button>
+          <button type="button" class="btn btn-default" >
+            <span class="glyphicon glyphicon-share"></span>
+          </button>
+          <button type="button" class="btn btn-default" on-click="toggle-comments" style="{{#if commentsEnabled }}color: #0000ff{{/if}}">
+            <span class="glyphicon glyphicon-comment"></span>
+          </button>
+          <button type="button" class="btn btn-default" >
+            <span class="glyphicon glyphicon-fullscreen"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="graphical_view" class="graphical_view"
+         style="width: 100%; height: 450px; background-color: #f9f9f9; position: relative; border-radius: 5px;">
+
+      <div id="modelLoader" style="position: absolute; right: 10px; bottom: 10px;">
+        <img width="20" height="20" src="/images/loading.gif">
+      </div>
+
+      {{#if commentsEnabled }}
+      <div style="width: 30%; overflow: scroll; max-height: 445px; position: absolute; right:0; top: 0; border-radius: 5px;">
+        {{#cadmodel.comments:k,i}}
+          {{#if k === selectedObject }}
+            {{#each .:i}}
+            <div style="opacity: 0.8; background-color: #444; color: #fff; border-radius: 5px; margin: 10px; padding: 10px;">
+              <div><strong>{{ .author }}</strong></div>
+              {{ .comment }}
+              <div style="text-align: right; font-size: 0.8em;">{{ .timestamp }}</div>
+            </div>
+            {{/each}}
+            <div style="opacity: 0.8; border-radius: 5px; margin: 10px;">
+              <input type="text" class="form-control" placeholder="Your comment here" autofocus>
+            </div>
+          {{/if}}
+        {{/}}
+      </div>
+      {{/if}}
+
+    </div>
+  </div>
+
+</script>
+
+<div id="ractive-container">
+
+</div>
+
+<script data-main="/js/mecanical-model.js" src="/packages/requirejs/require.js"></script>
